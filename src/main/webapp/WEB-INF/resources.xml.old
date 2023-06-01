@@ -1,0 +1,8 @@
+<Resource id="myDataSource" type="DataSource">
+    JdbcDriver org.h2.Driver
+    JdbcUrl jdbc:h2:file:C:/dev/h2-data/sample
+    UserName test
+    Password test
+        JtaManaged          true
+    DefaultAutoCommit   false
+</Resource>

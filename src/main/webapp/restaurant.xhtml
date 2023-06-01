@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014, 2019 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Distribution License v. 1.0, which is available at
+    http://www.eclipse.org/org/documents/edl-v10.php.
+
+    SPDX-License-Identifier: BSD-3-Clause
+
+-->
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	data-theme="dark">
+
+<f:metadata>
+	<f:viewParam name="id" value="#{restaurantFaceBean.loadId}" />
+	<f:viewAction action="#{restaurantFaceBean.onLoad}" />
+</f:metadata>
+<h:head> 
+</h:head>
+<h:body>
+
+	<h:form>
+		<h2>Restaurant form</h2>
+		<p>You can create, consult or update a restaurant here!</p>
+
+		<p>
+			<label for="restaurantId">Identifiant :</label><br />
+			<h:inputText id="restaurantId" name="id" placeholder="Enter id here"
+				value="#{restaurantFormBean.id}" readonly="true" />
+			<h:message  for = "restaurantId" style = "color:red"  />
+		</p>
+		<p>
+			<label for="name">Name :</label><br />
+			<h:inputText id="name" name="name" placeholder="Enter name here" 
+				value="#{restaurantFormBean.name}" required="true" validatorMessage="NEIIIN!!"
+				requiredMessage="NEINNEIN"/>
+			<h:message   for = "name" style = "color:red" />
+		</p>
+		<p>
+			<label for="active">Active :</label><br />
+			<h:selectOneRadio id="active" value="#{restaurantFormBean.active}">
+				<f:selectItem itemValue="true" itemLabel="Active" />
+				<f:selectItem itemValue="false" itemLabel="Inactive" />
+			</h:selectOneRadio>
+			<h:message for = "active" style = "color:red" />
+		</p>
+		<p>
+			<label for="address">Address :</label><br />
+			<h:inputText type="text" id="address" name="address"
+				value="#{restaurantFormBean.address}" required="true" />
+			<h:message for = "address" style = "color:red" />
+		</p>
+		<p>
+			<label for="phone">Phone :</label><br />
+			<h:inputText type="text" id="phone" name="phone"
+				value="#{restaurantFormBean.phone}" required="true" />
+			<h:message for = "phone" style = "color:red" />
+		</p>
+		<p>
+			<label for="email">Email :</label><br />
+			<h:inputText type="text" id="email" name="email"
+				value="#{restaurantFormBean.email}" required="true" />
+			<h:message for = "email" style = "color:red" />
+		</p>
+		<p>
+			<label for="restaurantType">Type :</label><br />
+			<h:selectOneMenu id="restaurantType"
+				value="#{restaurantFormBean.restaurantTypeId}">
+				<f:selectItems value="#{restaurantTypeFaceBean.allTypes}"
+					var="restaurantType" itemLabel="#{restaurantType.name}"
+					itemValue="#{restaurantType.id}" />
+			</h:selectOneMenu>
+			<h:message for = "restaurantType" style = "color:red" />
+		</p>
+		<p>
+			<h:commandButton value="Save" action="#{restaurantFaceBean.save}" />
+			<h:commandButton value="Cancel" immediate="true" action="front-page" />
+		</p>
+	</h:form>
+
+</h:body>
+</html>

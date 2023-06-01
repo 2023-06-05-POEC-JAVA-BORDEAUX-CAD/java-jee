@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	data-theme="dark">
+
+<h:head>
+    <link rel="stylesheet" href="css/minstyle.io.css" /> 
+</h:head>
+<h:body >
+	#{msg.hello}
+	<h:form>
+		<h:commandLink id="create-restaurant" value="create restaurant"
+			action="#{restaurantFaceBean.displayCreate}" />
+		<br />
+		<h:commandLink id="create-restaurant-type"
+			value="create restaurant type"
+			action="#{restaurantTypeFaceBean.displayCreate}" />
+		<br />
+		<h:commandLink id="manage-restaurant-type"
+			value="Manage restaurant types"
+			action="#{restaurantTypeFaceBean.displayAll}" />
+		<br />
+		<br />
+		<h:commandLink id="change-locale"
+			value="Change locale"
+			action="#{applicationFaceBean.switchLocale}" />
+		<br />
+
+		<label for="restaurantTypeFilter">Filtre pour les types de restaurant</label>
+		<br/>
+		<br/>
+		<h:inputText id="restaurantTypeFilter" name="restaurantTypeFilter"
+			value="#{frontPageFaceBean.restaurantTypeFilter}">
+			<f:ajax event="keyup" execute="restaurantTypeFilter" render="restaurantTypes" />
+		</h:inputText>
+			
+		<h:dataTable
+			id="restaurantTypes" 
+			value="#{frontPageFaceBean.restaurantTypes}"
+			var="restaurantType">
+			<h:column>
+				<f:facet name="header">Id</f:facet>    				
+      				#{restaurantType.id}
+   			</h:column>
+			<h:column>
+				<f:facet name="header">Name</f:facet>    				
+      				#{restaurantType.name}
+   			</h:column>
+		</h:dataTable>
+
+	</h:form>
+
+
+</h:body>
+</html>
